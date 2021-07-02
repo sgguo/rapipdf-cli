@@ -1,10 +1,50 @@
 {
+  "localize": {
+    "index": "索引",
+    "api": "API",
+    "apiList": "API List",
+    "apiReference": "API Referenz",
+    "apiVersion": "API Version",
+    "contact": "KONTAKT",
+    "name": "NAME",
+    "email": "EMAIL",
+    "url": "URL",
+    "termsOfService": "Nutzungsbedingungen",
+    "securityAndAuthentication": "Sicherheit und Authentifizierung",
+    "securitySchemes": "SICHERHEIT SCHEMAS",
+    "key": "SCHLÜSSEL",
+    "type": "TYP",
+    "example": "BEISPIEL",
+    "description": "BESCHREIBUNG",
+    "request": "REQUEST",
+    "requestBody": "REQUEST BODY",
+    "response": "RESPONSE",
+    "responseModel": "RESPONSE MODEL",
+    "statusCode": "STATUS CODE",
+    "deprecated": "VERALTET",
+    "allowed": "ERLAUBT",
+    "default": "DEFAULT",
+    "readOnly": "READ ONLY",
+    "writeOnly": "WRITE ONLY",
+    "enumValues": "ENUM",
+    "pattern": "PATTERN",
+    "parameters": "Parameter",
+    "noRequestParameters": "Keine request parameter",
+    "method": "METHOD",
+    "pageNumber": "%d von %d",
+    "createdDate": "Generiert am: %3$s.%2$s.%1$s"
+  },
+  "pdfStyles": {
+    "gray": {"color": "#b1b1b1"},
+    "darkgray": {"color": "#868686"},
+    "lightgray": {"color": "#d9d9d9"}
+  },
   "pdfFonts": {
     "Roboto": {
-      "normal": "../fonts/Roboto-Regular.ttf",
-      "bold": "../fonts/Roboto-Medium.ttf",
-      "italics": "../fonts/Roboto-Italic.ttf",
-      "bolditalics": "../fonts/Roboto-Medium.ttf"
+      "normal": "./fonts/AlibabaPuHuiTi/Alibaba-PuHuiTi-Medium.ttf",
+      "bold": "./fonts/AlibabaPuHuiTi/Alibaba-PuHuiTi-Medium.ttf",
+      "italics": "./fonts/AlibabaPuHuiTi/Alibaba-PuHuiTi-Medium.ttf",
+      "bolditalics": "./fonts/AlibabaPuHuiTi/Alibaba-PuHuiTi-Medium.ttf"
     },
     "RobotoMono": {
       "normal": "../fonts/RobotoMono-Regular.ttf",
