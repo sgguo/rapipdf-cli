@@ -9,8 +9,12 @@ import PdfPrinter from "@kingjan1999/pdfmake";
 import URLResolver from "@kingjan1999/pdfmake/js/URLResolver";
 import { sprintf } from "sprintf-js";
 
+export let localize = null;
+
 export default async function createPdf(spec, options) {
   const parsedSpec = await ProcessSpec(spec, options.pdfSortTags);
+
+  localize = options.localize;
 
   const pdfStyles = {
     title: { fontSize: 32 },

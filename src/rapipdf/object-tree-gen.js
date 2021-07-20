@@ -1,6 +1,7 @@
 import htmlToPdfmake from 'html-to-pdfmake';
 import { JSDOM } from 'jsdom';
 import marked from 'marked';
+import { localize } from './pdf-gen';
 import { rowLinesTableLayout } from './table-layouts';
 
 /* Generates an object containing type and constraint info */
@@ -38,6 +39,7 @@ export function getTypeInfo(schema) {
   if (!schema) {
     return;
   }
+
   const info = {
     type: schema.$ref
       ? '{recursive}'
@@ -49,11 +51,11 @@ export function getTypeInfo(schema) {
     format: schema.format ? schema.format : '',
     pattern: (schema.pattern && !schema.enum) ? schema.pattern : '',
     readOrWriteOnly: schema.readOnly
-      ? 'READ-ONLY'
+      ? 'readOnly'
       : schema.writeOnly
-        ? 'WRITE-ONLY'
+        ? 'writeOnly'
         : '',
-    deprecated: schema.deprecated ? 'DEPRECATED' : '',
+    deprecated: schema.deprecated ? 'deprecated' : '',
     default: schema.default === 0 ? '0' : (schema.default ? schema.default : ''),
     description: schema.description ? schema.description : '',
     allowedValues: '',
@@ -108,7 +110,9 @@ export function getTypeInfo(schema) {
       info.constrain = `max:${schema.maxLength} chars`;
     }
   }
-  info.typeInfoText = `${info.type}~|~${info.readOrWriteOnly} ${info.deprecated}~|~${info.constrain}~|~${info.default}~|~${info.allowedValues}~|~${info.pattern}~|~${info.description}`;
+  const readOrWriteOnly = localize && info.readOrWriteOnly ? localize[info.readOrWriteOnly] : info.readOrWriteOnly;
+  const deprecated = localize && info.deprecated ? localize[info.deprecated] :info.deprecated;
+  info.typeInfoText = `${info.type}~|~${readOrWriteOnly} ${deprecated}~|~${info.constrain}~|~${info.default}~|~${info.allowedValues}~|~${info.pattern}~|~${info.description}`;
   return info;
 }
 

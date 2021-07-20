@@ -1,6 +1,6 @@
 {
   "name": "@sgguo/rapipdf-cli",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "Jan Beckmann @kingjan1999",
   "bin": {
     "rapipdf": "./bin/run"
