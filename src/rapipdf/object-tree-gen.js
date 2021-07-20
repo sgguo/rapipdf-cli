@@ -128,7 +128,7 @@ function generatePropDescription(propDescrArray, localize) {
   // Set Constraints
   if (propDescrArray[2]) {
     descrStack.push({
-      text: `${propDescrArray[2]}`, style: ['small', 'mono', 'darkGray'],
+      text: `${propDescrArray[2]}`, style: ['sub', 'mono', 'darkGray'],
     });
   }
 
@@ -137,7 +137,7 @@ function generatePropDescription(propDescrArray, localize) {
     descrStack.push({
       text: [
         { text: `${localize.default}:`, style: ['sub', 'b', 'darkGray'] },
-        { text: propDescrArray[3], style: ['small', 'darkGray', 'mono'] },
+        { text: propDescrArray[3], style: ['sub', 'darkGray', 'mono'] },
       ],
     });
   }
@@ -147,7 +147,7 @@ function generatePropDescription(propDescrArray, localize) {
     descrStack.push({
       text: [
         { text: `${localize.allowed}:`, style: ['sub', 'b', 'darkGray'] },
-        { text: propDescrArray[4], style: ['small', 'lightGray', 'mono'] },
+        { text: propDescrArray[4], style: ['sub', 'lightGray', 'mono'] },
       ],
     });
   }
@@ -157,7 +157,7 @@ function generatePropDescription(propDescrArray, localize) {
     descrStack.push({
       text: [
         { text: `${localize.pattern}:`, style: ['sub', 'b', 'darkGray'] },
-        { text: propDescrArray[5], style: ['small', 'lightGray', 'mono'] },
+        { text: propDescrArray[5], style: ['sub', 'lightGray', 'mono'] },
       ],
     });
   }
