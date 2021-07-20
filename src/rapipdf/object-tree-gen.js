@@ -165,6 +165,7 @@ function generatePropDescription(propDescrArray, localize) {
 
     if (propDescrArray[6]) {
       text.stack = markdownToPdfmake(`${propDescrArray[6]}`);
+      text.margin = [0, -3, 0, -3];
     } else {
       text.text = `${propDescrArray[6]}`;
     }

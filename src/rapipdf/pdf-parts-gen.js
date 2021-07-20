@@ -130,7 +130,7 @@ function getParameterTableDef(parameters, paramType, localize, includeExample = 
         { text: type + format, style: ['small', 'mono'] },
         { text: includeExample ? (param.example ? param.example : (param.examples && param.examples[0] ? param.examples[0] : '')) : '', style: ['small'], margin: [0, 2, 0, 0] },
         param.description
-          ? { stack: markdownToPdfmake(param.description), style: ['small'], margin: [0, 2, 0, 0] }
+          ? { stack: markdownToPdfmake(param.description), style: ['small'], margin: [0, -3, 0, 0] }
           : { text: param.description, style: ['small'], margin: [0, 2, 0, 0] },
       ]);
     }
@@ -161,7 +161,7 @@ function getParameterTableDef(parameters, paramType, localize, includeExample = 
         },
         { text: includeExample ? (param.example ? param.example : (param.examples && param.examples[0] ? param.examples[0] : '')) : '', style: ['small'], margin: [0, 2, 0, 0] },
         param.description
-          ? { stack: markdownToPdfmake(param.description), style: ['small'], margin: [0, 2, 0, 0] }
+          ? { stack: markdownToPdfmake(param.description), style: ['small'], margin: [0, -3, 0, 0] }
           : { text: param.description, style: ['small'], margin: [0, 2, 0, 0] },
       ]);
     });
