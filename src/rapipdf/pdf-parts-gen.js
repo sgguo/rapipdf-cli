@@ -1,6 +1,3 @@
-import marked from 'marked';
-import htmlToPdfmake from 'html-to-pdfmake';
-import { JSDOM } from 'jsdom';
 import { sprintf } from 'sprintf-js';
 
 import { rowLinesTableLayout } from './table-layouts';
@@ -9,13 +6,8 @@ import {
   schemaInObjectNotation,
   objectToTree,
   objectToTableTree,
+  markdownToPdfmake
 } from './object-tree-gen';
-
-function markdownToPdfmake(markdown) {
-  const html = marked(markdown);
-  const jsdom = new JSDOM("");
-  return htmlToPdfmake(html, {window: jsdom.window});
-}
 
 // Info Def
 export function getInfoDef(spec, bookTitle, localize) {
@@ -137,7 +129,9 @@ function getParameterTableDef(parameters, paramType, localize, includeExample = 
         { text: paramName, style: ['small', 'mono'] },
         { text: type + format, style: ['small', 'mono'] },
         { text: includeExample ? (param.example ? param.example : (param.examples && param.examples[0] ? param.examples[0] : '')) : '', style: ['small'], margin: [0, 2, 0, 0] },
-        { text: param.description, style: ['small'], margin: [0, 2, 0, 0] },
+        param.description
+          ? { stack: markdownToPdfmake(param.description), style: ['small'], margin: [0, 2, 0, 0] }
+          : { text: param.description, style: ['small'], margin: [0, 2, 0, 0] },
       ]);
     }
   } else {
@@ -166,7 +160,9 @@ function getParameterTableDef(parameters, paramType, localize, includeExample = 
           ],
         },
         { text: includeExample ? (param.example ? param.example : (param.examples && param.examples[0] ? param.examples[0] : '')) : '', style: ['small'], margin: [0, 2, 0, 0] },
-        { text: param.description, style: ['small'], margin: [0, 2, 0, 0] },
+        param.description
+          ? { stack: markdownToPdfmake(param.description), style: ['small'], margin: [0, 2, 0, 0] }
+          : { text: param.description, style: ['small'], margin: [0, 2, 0, 0] },
       ]);
     });
   }
@@ -484,7 +480,6 @@ export function getApiDef(spec, filterPath, schemaStyle, localize, includeExampl
 
   return content;
 }
-
 
 // API List Def
 export function getApiListDef(spec, sectionHeading, localize) {

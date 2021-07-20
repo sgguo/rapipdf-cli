@@ -11,6 +11,10 @@ Apart from just providing an CLI, some additional configuration options (e.g. ad
 <!-- toc -->
 * [Usage](#usage)
 * [Configuration File](#configuration-file)
+* [Example Usage](#example-usage)
+<!-- tocstop -->
+* [Usage](#usage)
+* [Configuration File](#configuration-file)
 <!-- tocstop -->
 
 # Usage

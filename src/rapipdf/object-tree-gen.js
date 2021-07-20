@@ -1,4 +1,39 @@
+import htmlToPdfmake from 'html-to-pdfmake';
+import { JSDOM } from 'jsdom';
+import marked from 'marked';
+import { rowLinesTableLayout } from './table-layouts';
+
 /* Generates an object containing type and constraint info */
+export function markdownToPdfmake(markdown) {
+  const html = marked(markdown);
+  const jsdom = new JSDOM("");
+  const pdf = htmlToPdfmake(html, {window: jsdom.window});
+
+  return insertTableLayout(pdf);
+}
+
+export function insertTableLayout(pdf) {
+  const insertLayout = (node) => {
+    if (node.nodeName === 'TABLE') {
+      node.layout = rowLinesTableLayout;
+      node.style = 'tableMargin';
+      node.headerRows = 1;
+    }
+
+    if (node.stack instanceof Array) {
+      node.stack = node.stack.map((svalue) => insertTableLayout(svalue));
+    }
+
+    return node;
+  };
+
+  if (pdf instanceof Array) {
+    return pdf.map((value) => insertLayout(value));
+  }
+
+  return insertLayout(pdf);
+}
+
 export function getTypeInfo(schema) {
   if (!schema) {
     return;
@@ -123,11 +158,18 @@ function generatePropDescription(propDescrArray, localize) {
     });
   }
   if (propDescrArray[6]) {
-    descrStack.push({
-      text: `${propDescrArray[6]}`,
+    const text = {
       style: ['sub', 'lightGray'],
       margin: [0, 3, 0, 0],
-    });
+    };
+
+    if (propDescrArray[6]) {
+      text.stack = markdownToPdfmake(`${propDescrArray[6]}`);
+    } else {
+      text.text = `${propDescrArray[6]}`;
+    }
+
+    descrStack.push(text);
   }
   return descrStack;
 }
